@@ -1,7 +1,8 @@
 html {
   font-size: 14px;
   --light-tan: #9db49a;
-  --light-tan: #394535;
+  --tan: #718064;
+  --dark-tan: #394535;
   --gween: #3aee8b;
   background-color: var(--light-tan);
 }

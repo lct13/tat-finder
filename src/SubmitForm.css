@@ -1,6 +1,9 @@
+html {
+  background-color: var(--dark-tan);
+}
+
 .form {
   font-size: 1.5rem;;
-  --tan: #718064;
   margin-left: 7rem;
   margin-right: 7rem;
   margin-top: 5vw;
@@ -71,7 +74,7 @@ input {
   width: 100%;
 }
 
-.tags-container {
+.tags-input {
   border: solid 3px var(--light-tan);
   border-radius: 20px;
   background-color: var(--light-tan);

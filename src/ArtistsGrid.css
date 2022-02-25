@@ -1,0 +1,50 @@
+html {
+    background-color: var(--tan);
+}
+
+.tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1rem;
+}
+
+.tag {
+    border: solid 1px black;
+    border-radius: 1rem;
+    border-color: plum;
+    color: tomato;
+    padding: 0.2rem;
+    font-family: monospace;
+}
+
+.tag button {
+    background-color: transparent;
+    border: none;
+    margin-left: 0.3rem;
+    color: cornflowerblue;
+}
+
+.grid {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1rem;
+}
+
+.card {
+    background-color: var(--light-tan);
+    border-radius: 1rem;
+    width: 20vw;
+    margin: 2vw;
+    padding: 1rem;
+    font-size: 2rem;
+    color: var(--tan);
+    font-family: 'Dokdo', monospace;
+}
+
+.artist-tags {
+    font-size: 0.7rem;
+}

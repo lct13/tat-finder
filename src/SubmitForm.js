@@ -81,7 +81,7 @@ function SubmitForm(props) {
       </label>        
       <label className='specializations'>
         specializations
-        <div className="tags-container">
+        <div className="tags-input">
           <ReactTags
             tags={tags}
             suggestions={suggestions}
