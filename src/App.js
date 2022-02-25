@@ -1,23 +1,26 @@
-import logo from './logo.svg';
 import './App.css';
+import SubmitForm from './SubmitForm';
+import { useState } from "react";
 
 function App() {
+  const [page, setPage] = useState([0]);
+
+  // runs when send button is clicked
+  function submitArtist(name, site, location, tags) {
+    console.log("submit " + name);
+    setPage(0);
+  }
   return (
     <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+      <div className='menu-container'>
+        <button className='menu' onClick={()=> setPage(1)}> a</button>
+      </div>
+      <header className="header">
+        [tAttiez] 4 me + U
       </header>
+
+      {page===1 && <SubmitForm handleSubmit={submitArtist}/>}
+
     </div>
   );
 }

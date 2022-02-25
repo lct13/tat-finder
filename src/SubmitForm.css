@@ -1,0 +1,105 @@
+.form {
+  font-size: 1.5rem;;
+  --tan: #718064;
+  margin-left: 7rem;
+  margin-right: 7rem;
+  margin-top: 5vw;
+  margin-bottom: 5vw;
+  border: solid 4px var(--tan);
+  border-radius: 30px;
+  background-color: var(--tan);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: max-content;
+  padding: 1rem;
+}
+
+label {
+  display: flex;
+  flex-direction: column;
+  width: 70%;
+  text-align: center;
+  font-family: 'Dokdo', monospace;
+  color: var(--light-tan);
+  margin-bottom: 1rem;
+}
+
+input {
+  background-color: var(--light-tan);
+  /* border: solid 2px var(--tan); */
+  color: tomato;
+  font-family: monospace;
+  font-size: 1.3rem;
+  padding: 0.3rem;
+  border-radius: 50px;
+  height: 1.5rem;
+  padding-left: 0.5rem;
+}
+
+.name {
+  color: var(--tan);
+  margin-top: -4rem;
+  margin-left: 3rem;
+  width: 50%;
+}
+
+.website {
+  margin-left: 26vw;
+}
+
+.location {
+  margin-left: -10vw;
+}
+
+.submit {
+  width: 2.5rem;
+  height: 2.5rem;
+  font-size: 2rem;
+  padding: 0;
+  background-color: tomato;
+  border-radius: 50%;
+  color: tomato;
+}
+
+.submit:hover {
+  background-color: transparent;
+  color: tomato;
+}
+
+.specializations {
+  width: 100%;
+}
+
+.tags-container {
+  border: solid 3px var(--light-tan);
+  border-radius: 20px;
+  background-color: var(--light-tan);
+  color: tomato;
+  font-family: monospace;
+  font-size: 1.2rem;
+}
+
+.specializations button {
+  border-radius: 1rem;
+  border-width: 1.5px;
+  margin-right: 0.5rem;
+  background-color: tomato;
+}
+
+.specializations ul {
+  position: absolute;
+  margin-top: 0.2rem;
+  margin-left: 20vw;
+}
+
+.specializations li {
+  border: solid 1px tomato;
+  border-radius: 1rem;
+  background-color: tomato;
+  color: var(--light-tan);
+  box-shadow: 1px 1px var(--tan);
+  margin: 0.2rem;
+  font-family: monospace;
+  font-size: 1rem;
+}

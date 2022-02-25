@@ -1,38 +1,84 @@
-.App {
-  text-align: center;
+html {
+  font-size: 14px;
+  --light-tan: #9db49a;
+  --light-tan: #394535;
+  --gween: #3aee8b;
+  background-color: var(--light-tan);
 }
-
-.App-logo {
-  height: 40vmin;
-  pointer-events: none;
+/* tablet */
+@media only screen and (min-width: 480px) {
+  html {
+      font-size: 12px;
+  }
 }
-
-@media (prefers-reduced-motion: no-preference) {
-  .App-logo {
-    animation: App-logo-spin infinite 20s linear;
+/* desktop */
+@media only screen and (min-width: 768px) {
+  html {
+      font-size: 16px;
+  }
+}
+/* extra large */
+@media only screen and (min-width: 1024px) {
+  html {
+      font-size: 18px;
   }
 }
 
-.App-header {
-  background-color: #282c34;
-  min-height: 100vh;
+@media (prefers-reduced-motion: no-preference) {
+  .menu {
+    animation: menu-glow infinite 2s alternate-reverse;
+  }
+}
+
+@keyframes menu-glow {
+  from {
+    transform: scale(90%);
+    opacity: 100%;
+  }
+  to {
+    transform: scale(100%);
+    opacity: 90%;
+  }
+}
+
+.menu-container {
+  position: absolute;
+  display: flex;
+  flex-direction: row;
+  width: 97vw;
+  justify-content: flex-end;
+  align-items: flex-end;
+}
+
+.menu {
+  background-color: tomato;
+  color: tomato;
+  height: 2rem;
+  width: 2rem;
+  margin: 1rem;
+  border-radius: 1rem;
+  z-index: 2;
+  transition: width 1s, height 1.5s;
+}
+
+.menu:hover {
+  background-color: var(--light-tan);
+}
+
+.menu:focus {
+  width: 100vw;
+  height: 100vw;
+}
+
+.header {
   display: flex;
   flex-direction: column;
   align-items: center;
   justify-content: center;
-  font-size: calc(10px + 2vmin);
-  color: white;
-}
-
-.App-link {
-  color: #61dafb;
-}
-
-@keyframes App-logo-spin {
-  from {
-    transform: rotate(0deg);
-  }
-  to {
-    transform: rotate(360deg);
-  }
+  padding: 2rem;
+  font-size: 4rem;
+  font-family: 'Dokdo', monospace;
+  color: black;
+  text-shadow: 3px 2px var(--gween);
+  mix-blend-mode: lighten;
 }
