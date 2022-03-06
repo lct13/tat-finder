@@ -1,5 +1,10 @@
 html {
-    background-color: var(--tan);
+    /* background-color: var(--tan); */
+}
+
+::selection {
+    background-color: cornflowerblue;
+    color: var(--light-tan);
 }
 
 .tags {
@@ -8,6 +13,14 @@ html {
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 1rem;
+}
+
+.tagz {
+    background-color: transparent;
+    border: none;
+    text-decoration: underline;
+    color: var(--tan);
+    font-family: monospace;
 }
 
 .tag {
@@ -24,6 +37,10 @@ html {
     border: none;
     margin-left: 0.3rem;
     color: cornflowerblue;
+}
+
+.tag button:hover {
+    color: tomato;
 }
 
 .grid {
@@ -43,8 +60,36 @@ html {
     font-size: 2rem;
     color: var(--tan);
     font-family: 'Dokdo', monospace;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-between;
+}
+
+a {
+    color: var(--tan);
+    text-decoration-color: plum;
+    margin: 0px;
+}
+
+a:hover {
+    border: solid 2px plum;
 }
 
 .artist-tags {
     font-size: 0.7rem;
+    font-family: monospace;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    align-items: center;
+    justify-content: space-evenly;
+}
+
+.artist-tag {
+    color: tomato;
+    border: solid 1px;
+    border-radius: 1rem;
+    padding: 0.2rem;
+    width: fit-content;
+    margin: 0.2rem;
 }

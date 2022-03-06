@@ -1,17 +1,18 @@
 import './ArtistsGrid.css';
 
 function ArtistCard(props) {
-  const name = props.name;
-  const site = props.site;
-  const location = props.location;
-  const tags = props.tags;
+  const {name, site, location, tags, match} = props
   return (
     <div className='card'>
-      <a href={'https://www.instagram.com/'+site} className='artist-name'>{name}</a>
+      <a href={'https://www.instagram.com/'+site} target="_blank" rel='noreferrer' className='artist-name'>{name}</a>
       <div className='artist-location'>{location}</div>
       <div className='artist-tags'>
         {tags.map((tag, i)=>{
-          return (<div className='tag'>{tag.id}</div>);
+          if (match.includes(tag)){
+            return (<div className='artist-tag'>{tag}</div>);
+          } else {
+            return (<div className='tagz'>{tag}</div>);
+          }
         })}
       </div>
     </div>

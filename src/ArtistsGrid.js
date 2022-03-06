@@ -1,43 +1,64 @@
 import { useState } from 'react';
-import ArtistCard from './ArtistCard';
 import './ArtistsGrid.css';
+import ArtistCard from './ArtistCard';
+import Tag from './Tag';
+
 function ArtistsGrid(props) {
-  const {artists} = props;
-
-  const [selectedTags, setSelectedTags] = useState([])
-
-  var allTags = [];
-  artists.forEach(artist => {
-    console.log(artist.tags);
-    artist.tags.forEach(tag => {
-      if (!allTags.includes(tag)) {
-        allTags.push(tag);
-      }
-    });
-  });
+  const {artists, allTags} = props;
   console.log(allTags);
+
+  const [selectedTags, setSelectedTags] = useState([]);
+  //const [otherTags, setOtherTags] = useState(allTags);
+
+  function selectTag(tag) {
+    setSelectedTags([...selectedTags, tag]);
+    console.log(selectedTags);
+
+    // let arr = otherTags.slice();
+    // for (var i = 0; i < arr.length; i++){ 
+    //   if (arr[i] === tag) { 
+    //     arr.splice(i, 1); 
+    //   }  
+    // }
+    // setOtherTags(arr); //delete from selectedtags
+  }
+
+  function deselectTag(tag) { //this feels chunky
+    //setOtherTags([...otherTags, tag]);
+
+    let arr = selectedTags.slice();
+    for (var i = 0; i < arr.length; i++){ 
+      if (arr[i] === tag) { 
+        arr.splice(i, 1); 
+      }  
+    }
+    setSelectedTags(arr); //delete from selectedtags
+    console.log(selectedTags);
+  }
+
   return (
     <div >
       <div className='tags'>
         {allTags.map((tag, i)=>{
-          return (<div className='tag'>{tag.id}
-          <button>x</button></div>);
+          return <Tag tag={tag} key={i} selectTag={selectTag} deselectTag={deselectTag} />
         })}
+        {/* {otherTags.map((tag, i)=>{
+          return <div></div>
+          //return <Tag tag={tag} key={i} selectTag={selectTag} deselectTag={deselectTag} />
+        })} */}
       </div>
 
       <div className='grid'>
       {artists.map((artist, i)=>{
-        console.log(artist);
         var match = [];
         artist.tags.forEach(tag => {
           if (selectedTags.includes(tag)) {
             match.push(tag);
           }
         });
-        if (match.length < 1)
+        if (match.length > 0)
           return <ArtistCard {...artist} key={i} match={match} />;
         return;
-        //return <div className='message-bubble' key={i}>{msg}</div>
       })}
     </div>
     </div>
