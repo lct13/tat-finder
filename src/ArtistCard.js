@@ -9,9 +9,9 @@ function ArtistCard(props) {
       <div className='artist-tags'>
         {tags.map((tag, i)=>{
           if (match.includes(tag)){
-            return (<div className='artist-tag'>{tag}</div>);
+            return (<div className='artist-tag' key={i}>{tag}</div>);
           } else {
-            return (<div className='tagz'>{tag}</div>);
+            return (<div className='tagz' key={i}>{tag}</div>);
           }
         })}
       </div>

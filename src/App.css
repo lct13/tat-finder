@@ -1,8 +1,8 @@
 html {
   font-size: 14px;
-  --light-tan: #9db49a;
+  --light-tan: #b6b1c2;
   --tan: #718064;
-  --dark-tan: #394535;
+  --dark-tan: #354345;
   --gween: #3aee8b;
   background-color: var(--light-tan);
 }
@@ -55,7 +55,6 @@ html {
   background-color: tomato;
   color: tomato;
   height: 2rem;
-  width: 2rem;
   margin: 1rem;
   border-radius: 1rem;
   z-index: 2;
@@ -82,4 +81,10 @@ html {
   color: black;
   text-shadow: 3px 2px var(--gween);
   mix-blend-mode: lighten;
+}
+
+footer {
+  color: var(--light-tan);
+  border-top: solid 1px var(--tan);
+  font-family: 'Courier New', Courier, monospace;
 }

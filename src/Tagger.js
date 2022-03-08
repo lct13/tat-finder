@@ -1,6 +1,6 @@
 import { useState } from 'react';
 
-function Tag(props) {
+function Tagger(props) {
   const {selectTag, deselectTag, tag} = props;
   const [selected, setSelected] = useState(false);
 
@@ -29,4 +29,4 @@ function Tag(props) {
   }
 
 }
-export default Tag;
+export default Tagger;

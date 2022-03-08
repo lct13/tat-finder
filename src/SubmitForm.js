@@ -34,7 +34,7 @@ function SubmitForm(props) {
   const [name, setName] = useState([]);
   const [site, setSite] = useState([]);
   const [location, setLocation] = useState([]);
-  const [tags, setTags] = useState([]);
+  const [tags, setTags] = useState(suggestions);
 
   const handleDelete = i => {
     setTags(tags.filter((tag, index) => index !== i));

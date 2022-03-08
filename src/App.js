@@ -2,7 +2,7 @@ import './App.css';
 import SubmitForm from './SubmitForm';
 import ArtistsGrid from './ArtistsGrid';
 import { useState, useEffect } from "react";
-
+import { Link } from "react-router-dom";
 import { initializeApp } from "firebase/app";
 import { getFirestore } from "firebase/firestore";
 import { collection, addDoc, getDocs } from "firebase/firestore"; 
@@ -24,22 +24,23 @@ function App() {
 
   async function getArtists() {
     const querySnapshot = await getDocs(collection(db, "artists"));
-    let arr = [];
-    let arr1 = [];
+    var arr = [];
     querySnapshot.forEach((doc) => {
+      //setArtists([...artists, doc.data()]);
       artists.push(doc.data());
       doc.data().tags.forEach(tag => {
-        if (!allTags.includes(tag)) {
-          allTags.push(tag);
+        if (!arr.includes(tag)) {
+          arr.push(tag);
         }
       });
     });
-
+    setArtists(artists);
+    setAllTags(arr);
     console.log(allTags);
     console.log(artists);
   }
 
-  // runs when send button is clicked
+  // runs when submit button is clicked
   async function submitArtist(name, site, location, tags) {
     let json = {};
     json.name = name;
@@ -51,7 +52,6 @@ function App() {
     });
     console.log(tags);
     setArtists([...artists, json]);
-    setAllTags([...allTags, ...tags]);
     console.log(artists);
     try {
       const docRef = await addDoc(collection(db, "artists"), json);
@@ -59,22 +59,12 @@ function App() {
     } catch (e) {
       console.error("Error adding document: ", e);
     }
-    
-
-    // let newTags = [];
-    // tags.forEach(tag => {
-    //   if (!allTags.includes(tag.id)) {
-    //     newTags.push(tag.id);
-    //     //setAllTags([...allTags, tag.id]);
-    //   }
-    // });
-    // setAllTags([...allTags, ...newTags]);
     setPage(0);
   }
 
   useEffect(()=>{
     console.log("hi");
-    if (artists.length == 0) {
+    if (artists.length === 0) {
       getArtists();
     }
   });
@@ -82,7 +72,7 @@ function App() {
   return (
     <div className="App">
       <div className='menu-container'>
-        <button className='menu' onClick={()=> setPage(1-page)}>x</button>
+        <button className='menu' onClick={()=> setPage(1-page)}>submit</button>
       </div>
       <header className="header">
         [tAttiez] 4 me + U
@@ -91,6 +81,22 @@ function App() {
       {page===0 && <ArtistsGrid artists={artists} allTags={allTags} />}
       {page===1 && <SubmitForm handleSubmit={submitArtist}/>}
 
+      <footer>
+        --How 2 use--
+        <p>
+          --Submit a tattoo artist-- using the orange button on the top right corner.
+          <ul>
+            <li>put their name under artist's name; insta handle under instagram and city + state under location</li>
+            <li>customize their specializations by clicking a tag to remove it</li>
+          </ul>
+        </p>
+        <p>
+          --Browsing thru tattoo artists--
+          click on the tags to filter what kinds of artists you're looking for.
+        </p>
+        React app by <a href='https://www.instagram.com/tootopus' target="_blank" rel='noreferrer'>chi</a>
+        <Link to="/edit">.</Link>
+      </footer>
     </div>
   );
 }

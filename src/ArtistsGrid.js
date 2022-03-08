@@ -1,11 +1,10 @@
 import { useState } from 'react';
 import './ArtistsGrid.css';
 import ArtistCard from './ArtistCard';
-import Tag from './Tag';
+import Tagger from './Tagger';
 
 function ArtistsGrid(props) {
   const {artists, allTags} = props;
-  console.log(allTags);
 
   const [selectedTags, setSelectedTags] = useState([]);
   //const [otherTags, setOtherTags] = useState(allTags);
@@ -33,14 +32,24 @@ function ArtistsGrid(props) {
       }  
     }
     setSelectedTags(arr); //delete from selectedtags
-    console.log(selectedTags);
+  }
+
+  function match(artist) {
+    var match = [];
+    artist.tags.forEach(tag => {
+      if (selectedTags.includes(tag)) {
+        match.push(tag);
+      }
+    });
+    console.log(match.length);
+    return match.length;
   }
 
   return (
     <div >
       <div className='tags'>
         {allTags.map((tag, i)=>{
-          return <Tag tag={tag} key={i} selectTag={selectTag} deselectTag={deselectTag} />
+          return <Tagger tag={tag} key={i} selectTag={selectTag} deselectTag={deselectTag} />
         })}
         {/* {otherTags.map((tag, i)=>{
           return <div></div>
@@ -49,7 +58,9 @@ function ArtistsGrid(props) {
       </div>
 
       <div className='grid'>
-      {artists.map((artist, i)=>{
+      {//artists.sort((a, b) => (match(a)>match(b))).map((artist, i)=>{
+      artists.map((artist, i)=>{
+        console.log(artist.tags);
         var match = [];
         artist.tags.forEach(tag => {
           if (selectedTags.includes(tag)) {
