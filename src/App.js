@@ -27,8 +27,10 @@ function App() {
     var arr = [];
     querySnapshot.forEach((doc) => {
       //setArtists([...artists, doc.data()]);
-      artists.push(doc.data());
-      doc.data().tags.forEach(tag => {
+      let json = doc.data()
+      json.match = [];
+      artists.push(json);
+      json.tags.forEach(tag => {
         if (!arr.includes(tag)) {
           arr.push(tag);
         }
@@ -47,6 +49,7 @@ function App() {
     json.site = site;
     json.location = location;
     json.tags = [];
+    json.match = [];
     tags.forEach(tag=>{
       json.tags.push(tag.id);
     });
@@ -54,7 +57,7 @@ function App() {
     setArtists([...artists, json]);
     console.log(artists);
     try {
-      const docRef = await addDoc(collection(db, "artists"), json);
+      const docRef = await addDoc(collection(db, "submissions"), json);
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
@@ -72,7 +75,10 @@ function App() {
   return (
     <div className="App">
       <div className='menu-container'>
-        <button className='menu' onClick={()=> setPage(1-page)}>submit</button>
+        <button className='menu' onClick={()=> setPage(1-page)}>
+          {page===0 && "submit"}
+          {page===1 && "back"}
+        </button>
       </div>
       <header className="header">
         [tAttiez] 4 me + U

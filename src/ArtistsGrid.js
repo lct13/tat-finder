@@ -1,38 +1,17 @@
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import './ArtistsGrid.css';
 import ArtistCard from './ArtistCard';
-import Tagger from './Tagger';
+import TagSelection from './TagSelection';
+import { State }  from 'country-state-city';
+
+const states = State.getStatesOfCountry('US');
 
 function ArtistsGrid(props) {
   const {artists, allTags} = props;
 
+  const [sortedArtists, setSortedArtists] = useState(artists);
   const [selectedTags, setSelectedTags] = useState([]);
-  //const [otherTags, setOtherTags] = useState(allTags);
-
-  function selectTag(tag) {
-    setSelectedTags([...selectedTags, tag]);
-    console.log(selectedTags);
-
-    // let arr = otherTags.slice();
-    // for (var i = 0; i < arr.length; i++){ 
-    //   if (arr[i] === tag) { 
-    //     arr.splice(i, 1); 
-    //   }  
-    // }
-    // setOtherTags(arr); //delete from selectedtags
-  }
-
-  function deselectTag(tag) { //this feels chunky
-    //setOtherTags([...otherTags, tag]);
-
-    let arr = selectedTags.slice();
-    for (var i = 0; i < arr.length; i++){ 
-      if (arr[i] === tag) { 
-        arr.splice(i, 1); 
-      }  
-    }
-    setSelectedTags(arr); //delete from selectedtags
-  }
+  const [state, selectState] = useState();
 
   function match(artist) {
     var match = [];
@@ -45,30 +24,38 @@ function ArtistsGrid(props) {
     return match.length;
   }
 
-  return (
+  function updateTags(tags) {
+    setSelectedTags(tags);
+    console.log(tags);
+    console.log(selectedTags);
+    var artistMatrix = [];
+    artists.forEach(artist=>{
+      var match = [];
+      artist.tags.forEach(tag => {
+        if (selectedTags.includes(tag)) {
+          match.push(tag);
+        }
+      });
+      if (match.length > 0) {
+        const newArtist = artist;
+        newArtist.match = match;
+        artistMatrix.push(newArtist);
+      }
+    });
+    artistMatrix.sort((a,b) => {
+      return b.match.length - a.match.length;
+    })
+    setSortedArtists(artistMatrix);
+  }
+
+ return (
     <div >
-      <div className='tags'>
-        {allTags.map((tag, i)=>{
-          return <Tagger tag={tag} key={i} selectTag={selectTag} deselectTag={deselectTag} />
-        })}
-        {/* {otherTags.map((tag, i)=>{
-          return <div></div>
-          //return <Tag tag={tag} key={i} selectTag={selectTag} deselectTag={deselectTag} />
-        })} */}
-      </div>
+      <TagSelection allTags={allTags} updateTags={updateTags}/>
 
       <div className='grid'>
       {//artists.sort((a, b) => (match(a)>match(b))).map((artist, i)=>{
-      artists.map((artist, i)=>{
-        console.log(artist.tags);
-        var match = [];
-        artist.tags.forEach(tag => {
-          if (selectedTags.includes(tag)) {
-            match.push(tag);
-          }
-        });
-        if (match.length > 0)
-          return <ArtistCard {...artist} key={i} match={match} />;
+      sortedArtists.map((artist, i)=>{
+          return <ArtistCard {...artist} k={i} />;
         return;
       })}
     </div>

@@ -1,9 +1,11 @@
 html {
   font-size: 14px;
-  --light-tan: #b6b1c2;
+  --light-tan: #cbc7da;
   --tan: #718064;
-  --dark-tan: #354345;
+  --dark-tan: #2b3536;
   --gween: #3aee8b;
+  --orange: rgb(214, 84, 23);
+  --black: rgb(43, 40, 51);
   background-color: var(--light-tan);
 }
 /* tablet */
@@ -52,7 +54,7 @@ html {
 }
 
 .menu {
-  background-color: tomato;
+  background-color: var(--orange);
   color: tomato;
   height: 2rem;
   margin: 1rem;
@@ -65,10 +67,10 @@ html {
   background-color: var(--light-tan);
 }
 
-.menu:focus {
+/* .menu:focus {
   width: 100vw;
   height: 100vw;
-}
+} */
 
 .header {
   display: flex;

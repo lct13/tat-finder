@@ -7,42 +7,6 @@ html {
     color: var(--light-tan);
 }
 
-.tags {
-    display: flex;
-    flex-direction: row;
-    justify-content: space-evenly;
-    flex-wrap: wrap;
-    margin: 1rem;
-}
-
-.tagz {
-    background-color: transparent;
-    border: none;
-    text-decoration: underline;
-    color: var(--tan);
-    font-family: monospace;
-}
-
-.tag {
-    border: solid 1px black;
-    border-radius: 1rem;
-    border-color: plum;
-    color: tomato;
-    padding: 0.2rem;
-    font-family: monospace;
-}
-
-.tag button {
-    background-color: transparent;
-    border: none;
-    margin-left: 0.3rem;
-    color: cornflowerblue;
-}
-
-.tag button:hover {
-    color: tomato;
-}
-
 .grid {
     display: flex;
     flex-direction: row;
@@ -55,6 +19,7 @@ html {
     background-color: var(--light-tan);
     border-radius: 1rem;
     width: 20vw;
+    min-width: fit-content;
     margin: 2vw;
     padding: 1rem;
     font-size: 2rem;
@@ -81,12 +46,13 @@ a:hover {
     display: flex;
     flex-direction: row;
     flex-wrap: wrap;
-    align-items: center;
+    align-items: flex-start;
     justify-content: space-evenly;
+    max-width: 15rem;
 }
 
 .artist-tag {
-    color: tomato;
+    color: var(--orange);
     border: solid 1px;
     border-radius: 1rem;
     padding: 0.2rem;

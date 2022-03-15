@@ -1,0 +1,39 @@
+.tags {
+    display: flex;
+    flex-direction: row;
+    justify-content: space-evenly;
+    flex-wrap: wrap;
+    margin: 1rem;
+}
+
+.tagz {
+    background-color: transparent;
+    border: solid 1px transparent;
+    padding: 0.2rem;
+    text-decoration: underline;
+    color: var(--tan);
+    font-family: monospace;
+}
+
+.tagz:hover {
+    color: var(--orange);
+}
+
+.tag {
+    border: solid 1px plum;
+    border-radius: 1rem;
+    color: var(--orange);
+    padding: 0.2rem;
+    font-family: monospace;
+}
+
+.tag button {
+    background-color: transparent;
+    border: none;
+    margin-left: 0.3rem;
+    color: cornflowerblue;
+}
+
+.tag button:hover {
+    color: var(--orange);
+}
