@@ -3,7 +3,6 @@ import './ArtistsGrid.css';
 function ArtistCard(props) {
   const {name, site, location, tags, match, k} = props
   var bgColor;
-  console.log("key" + k)
   if (k%4 === 0 || k%4 ===3) {
     bgColor = "var(--light-tan)";
   } else {

@@ -6,10 +6,14 @@ function TagSelection(props) {
   const {allTags, updateTags} = props;
   const [selectedTags, setSelectedTags] = useState([]);
 
-  function select(tag) {
-    setSelectedTags([...selectedTags, tag]);
-    console.log('selected ' + tag)
-    updateTags(selectedTags);// this is called before setSelectedTags?
+  async function select(tag) {
+    var arr = selectedTags.slice();
+    arr.push(tag);
+    setSelectedTags(arr);
+    //setSelectedTags([...selectedTags, tag]) //doesnt work???!
+    console.log('selected ' + tag);
+    console.log('all: ' + selectedTags);
+    updateTags(arr);// this is called before setSelectedTags?
   }
 
   function deselect(tag) {
@@ -21,7 +25,7 @@ function TagSelection(props) {
     }
     setSelectedTags(arr); //delete from selectedtags
     console.log('deselected ' + tag)
-    updateTags(selectedTags);
+    updateTags(arr);
   }
 
   return(

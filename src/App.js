@@ -48,20 +48,17 @@ function App() {
     json.name = name;
     json.site = site;
     json.location = location;
-    json.tags = [];
-    json.match = [];
-    tags.forEach(tag=>{
-      json.tags.push(tag.id);
-    });
+    json.tags = tags;
     console.log(tags);
-    setArtists([...artists, json]);
-    console.log(artists);
     try {
       const docRef = await addDoc(collection(db, "submissions"), json);
       console.log("Document written with ID: ", docRef.id);
     } catch (e) {
       console.error("Error adding document: ", e);
     }
+    json.match = [];
+    setArtists([...artists, json]);
+    console.log(artists);    
     setPage(0);
   }
 
@@ -85,7 +82,7 @@ function App() {
       </header>
 
       {page===0 && <ArtistsGrid artists={artists} allTags={allTags} />}
-      {page===1 && <SubmitForm handleSubmit={submitArtist}/>}
+      {page===1 && <SubmitForm submitArtist={submitArtist}/>}
 
       <footer>
         --How 2 use--

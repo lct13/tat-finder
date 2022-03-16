@@ -9,25 +9,12 @@ const states = State.getStatesOfCountry('US');
 function ArtistsGrid(props) {
   const {artists, allTags} = props;
 
-  const [sortedArtists, setSortedArtists] = useState(artists);
-  const [selectedTags, setSelectedTags] = useState([]);
-  const [state, selectState] = useState();
+  const [state, setState] = useState("");
+  const [artistsByTags, setArtistsByTags] = useState(artists);
+  const [artistsByState, setArtistsByState] = useState(artists);
 
-  function match(artist) {
-    var match = [];
-    artist.tags.forEach(tag => {
-      if (selectedTags.includes(tag)) {
-        match.push(tag);
-      }
-    });
-    console.log(match.length);
-    return match.length;
-  }
-
-  function updateTags(tags) {
-    setSelectedTags(tags);
-    console.log(tags);
-    console.log(selectedTags);
+  function updateTags(selectedTags) {
+    console.log("update: " + selectedTags);
     var artistMatrix = [];
     artists.forEach(artist=>{
       var match = [];
@@ -45,18 +32,42 @@ function ArtistsGrid(props) {
     artistMatrix.sort((a,b) => {
       return b.match.length - a.match.length;
     })
-    setSortedArtists(artistMatrix);
+    setArtistsByTags(artistMatrix);
+    filterState(state);
   }
 
- return (
+  function filterState(s) {
+    setState(s);
+    if (s==="") {
+      setArtistsByState(artistsByTags);
+    } else {
+      var filterArtists = [];
+      artistsByTags.forEach(artist=>{
+        if (typeof artist.location === 'string' && artist.location.split(" ")[1] === s) {
+          filterArtists.push(artist);
+        }
+      });
+      setArtistsByState(filterArtists);
+    }
+  }
+  return (
     <div >
       <TagSelection allTags={allTags} updateTags={updateTags}/>
-
+      <select className='state-filter'
+        onChange={(e) => filterState(e.target.value)}>
+          <option value="" id='blank-state' selected>state</option>
+          {states.map((json, i) => {
+            const state = json.isoCode;
+            return (<option value={state} key={i}>
+            {state}</option>);
+          })}
+        </select>
       <div className='grid'>
-      {//artists.sort((a, b) => (match(a)>match(b))).map((artist, i)=>{
-      sortedArtists.map((artist, i)=>{
-          return <ArtistCard {...artist} k={i} />;
-        return;
+      {artistsByState.length===0 && 
+        <div className='error'>no artist in {state} found... submit one!</div>
+      }
+      {artistsByState.map((artist, i)=>{
+        return <ArtistCard {...artist} k={i} />;
       })}
     </div>
     </div>

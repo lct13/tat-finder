@@ -2,9 +2,24 @@ html {
     /* background-color: var(--tan); */
 }
 
+.state-filter {
+    background-color: var(--tan);
+    color: var(--light-tan);
+}
+
+.state-filter option {
+    background-color: var(--light-tan);
+}
+
 ::selection {
     background-color: cornflowerblue;
     color: var(--light-tan);
+}
+
+.error {
+    font-family: 'Dokdo', monospace;
+    font-size: 2rem;
+    color: var(--orange);
 }
 
 .grid {

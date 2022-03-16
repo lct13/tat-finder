@@ -4,6 +4,7 @@ import React, { useState, useEffect } from 'react';
 import './SubmitForm.css';
 import TagSelection from './TagSelection';
 import { State, City, Country }  from 'country-state-city';
+import { Field, FieldError, Form } from 'react-jsonschema-form-validation';
 
 const suggestions = [
   "dark skin",
@@ -13,17 +14,23 @@ const suggestions = [
 
 const states = State.getStatesOfCountry('US');
 
+const demoSchema = {
+  type: 'object',
+  properties: {
+      email: { type: 'string', format: 'email' },
+  },
+  required: [
+      'email',
+  ],
+};
+
+
 function SubmitForm(props) {
-  useEffect(()=>{
-    document.getElementsByClassName('menu')[0].textContent='back';
-  });
-
-  const { handleSubmit } = props;
-
-  const [name, setName] = useState();
-  const [site, setSite] = useState();
-  const [location, setLocation] = useState();
-  const [state, setState] = useState();
+  const { submitArtist } = props;
+  const [name, setName] = useState("");
+  const [site, setSite] = useState("");
+  const [location, setLocation] = useState("");
+  const [state, setState] = useState("");
   const [selectedTags, setSelectedTags] = useState([]);
 
   function updateTags(tags) {
@@ -32,8 +39,35 @@ function SubmitForm(props) {
     console.log("update: " + selectedTags);
   }
 
-  return (
+  const [formData, setFormData] = useState({ email: '' });
+    
+  const handleChange = (newData) => {
+      // newData is a copy of the object formData with properties (and nested properties)
+      // updated using immutability pattern for each change occured in the form.
+      setFormData(newData);
+  }
+  
+  const handleSubmit = () => {
+      submitArtist(formData); // Do whatever you want with the form data
+  }
+
+  return (      
     <div className='form'>
+        {/* <Form
+            data={formData}
+            onChange={handleChange}
+            onSubmit={handleSubmit}
+            schema={demoSchema}
+        >
+            <label>Email :</label>
+            <Field
+                name="email"
+                value={formData.email}
+            />
+            <FieldError name="email" />
+            <button type="submit">Submit</button>
+        </Form> */}
+
       <label className='name'>
         artist's name
         <input type="text" name="name" className='input'
@@ -70,13 +104,13 @@ function SubmitForm(props) {
           })}
         </select>
       </label>        
-      <label className='specializations'>
+      <div className='specializations'>
         has experience with
         <div className="tags-input">
           <TagSelection allTags={suggestions} updateTags={updateTags}/>
         </div>
-      </label>
-      <button className='submit' onClick={()=> handleSubmit(name, site, location, selectedTags)}><FiStar/></button>
+      </div>
+      <button className='submit' onClick={()=> submitArtist(name, site, location, selectedTags)}><FiStar/></button>
     </div>
   );
 }
