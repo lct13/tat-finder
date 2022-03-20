@@ -7,25 +7,29 @@ function TagSelection(props) {
   const [selectedTags, setSelectedTags] = useState([]);
 
   async function select(tag) {
-    var arr = selectedTags.slice();
-    arr.push(tag);
-    setSelectedTags(arr);
+    setSelectedTags((selectedTags)=> {
+      var arr = selectedTags.slice();
+      arr.push(tag);
+      console.log('selected ' + tag);
+      console.log('all: ' + selectedTags);
+      updateTags(arr);// this is called before setSelectedTags?
+      return arr;
+    });
     //setSelectedTags([...selectedTags, tag]) //doesnt work???!
-    console.log('selected ' + tag);
-    console.log('all: ' + selectedTags);
-    updateTags(arr);// this is called before setSelectedTags?
   }
 
   function deselect(tag) {
-    let arr = selectedTags.slice();
-    for (var i = 0; i < arr.length; i++){ 
-      if (arr[i] === tag) { 
-        arr.splice(i, 1); 
-      }  
-    }
-    setSelectedTags(arr); //delete from selectedtags
-    console.log('deselected ' + tag)
-    updateTags(arr);
+    setSelectedTags((selectedTags)=> {
+      let arr = selectedTags.slice();
+      for (var i = 0; i < arr.length; i++){ 
+        if (arr[i] === tag) { 
+          arr.splice(i, 1); 
+        }  
+      }
+      console.log('deselected ' + tag);
+      updateTags(arr);
+      return arr;
+    });
   }
 
   return(
