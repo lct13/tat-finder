@@ -1,3 +1,6 @@
+//03.20.2022 this version filters the artists by tags n then by state.
+// gotta reselect tags everytime reselecting state
+
 import { useState, useEffect } from 'react';
 import './ArtistsGrid.css';
 import ArtistCard from './ArtistCard';
@@ -9,6 +12,7 @@ const states = State.getStatesOfCountry('US');
 function ArtistsGrid(props) {
   const {artists, allTags} = props;
 
+  const [error, setError] = useState(false);
   const [state, setState] = useState("");
   const [sortedArtists, setSortedArtists] = useState(artists);
 //  const [artistsByState, setArtistsByState] = useState(artists);
@@ -38,19 +42,20 @@ function ArtistsGrid(props) {
   }
 
   function filterState(s) {
-    setSortedArtists((sortedArtists)=>{
-      setState(s);//if prev state is not "" prompt 2 reselect tags
-      if (s==="") {
-        return sortedArtists;
-      } else {
+    setState((oldState)=>{
+      if (!oldState==="") {
+        setError(true);
+      }
+      if (!s==="") {
         var filterArtists = [];
         sortedArtists.forEach(artist=>{
           if (typeof artist.location === 'string' && artist.location.split(" ")[1] === s) {
             filterArtists.push(artist);
           }
         });
-        return filterArtists;
+        setSortedArtists(filterArtists);
       }
+      return s;
     });
   }
   return (
@@ -66,6 +71,7 @@ function ArtistsGrid(props) {
           })}
         </select>
       <div className='grid'>
+      {error && <div className='error'>please reselect a tag for artists to show properly:)</div>}
       {sortedArtists.length===0 && 
         <div className='error'>no artist in {state} found... submit one!</div>
       }

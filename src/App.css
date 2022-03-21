@@ -90,3 +90,7 @@ footer {
   border-top: solid 1px var(--tan);
   font-family: 'Courier New', Courier, monospace;
 }
+
+footer img {
+  width: 80vw;
+}

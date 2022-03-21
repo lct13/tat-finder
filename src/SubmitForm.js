@@ -1,10 +1,10 @@
 import './SubmitForm.css';
 import { FiStar } from 'react-icons/fi';
 import React, { useState, useEffect } from 'react';
-import './SubmitForm.css';
 import TagSelection from './TagSelection';
 import { State, City, Country }  from 'country-state-city';
 import { Field, FieldError, Form } from 'react-jsonschema-form-validation';
+import InfoButton from './InfoButton';
 
 const suggestions = [
   "dark skin",
@@ -68,24 +68,24 @@ function SubmitForm(props) {
             <button type="submit">Submit</button>
         </Form> */}
 
-      <label className='name'>
+      <label className='name label'>
         artist's name
         <input type="text" name="name" className='input'
           onChange={(e) => setName(e.target.value)}
         />
       </label>
-      <label className='website'>
+      <label className='website label'>
         instagram
         <div>
           <span className='handle'>@</span>
-          <input type="text" name="website" className='input'
+          <input type="text" name='website input'
             onChange={(e) => setSite(e.target.value)}          
           />
         </div>
       </label>        
-      <label className='location'>
+      <label className='location label'>
         location
-        <select className='states' className='input'
+        <select className='states input'
         onChange={(e) => setState(e.target.value)}>
           <option value="" selected disabled hidden>state</option>
           {states.map((json, i) => {
@@ -94,7 +94,7 @@ function SubmitForm(props) {
             {state}</option>);
           })}
         </select>
-        <select className='cities' className='input'
+        <select className='cities input'
         onChange={(e) => setLocation(e.target.value + " " + state)}>
         <option value="" selected disabled hidden>city</option>
           {City.getCitiesOfState('US', state).map((json, i) => {
@@ -104,8 +104,10 @@ function SubmitForm(props) {
           })}
         </select>
       </label>        
-      <div className='specializations'>
-        has experience with
+      <div className='specializations label'>
+        <p>has experience with
+          {/* <InfoButton /> */}
+        </p>
         <div className="tags-input">
           <TagSelection allTags={suggestions} updateTags={updateTags}/>
         </div>

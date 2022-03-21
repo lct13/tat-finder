@@ -18,10 +18,9 @@ html {
   padding: 1rem;
 }
 
-label {
+.label {
   display: flex;
   flex-direction: column;
-  width: 70%;
   text-align: center;
   font-family: 'Dokdo', monospace;
   color: var(--light-tan);
@@ -110,6 +109,10 @@ option selected {
 
 .specializations {
   width: 100%;
+}
+
+.specializations > p {
+  margin-bottom: 0.2rem;
 }
 
 .tags-input {

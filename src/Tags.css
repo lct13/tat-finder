@@ -4,6 +4,7 @@
     justify-content: space-evenly;
     flex-wrap: wrap;
     margin: 1rem;
+    margin-top: 0;
 }
 
 .tagz {
@@ -37,3 +38,16 @@
 .tag button:hover {
     color: var(--orange);
 }
+
+.info-button{
+    background-color: transparent;
+    padding: 0;
+    margin-left: 90%;
+    margin-top: 0.2rem;
+    color: var(--tan);
+    border: none;
+  }
+  
+  .info-button:hover {
+    color: var(--orange);
+  }

@@ -97,6 +97,15 @@ function App() {
           --Browsing thru tattoo artists--
           click on the tags to filter what kinds of artists you're looking for.
         </p>
+        <p>
+          --How are you categorizing skin tones?--
+          For this app I'm using the fitzpatrick scale below as reference.
+          <ul>
+            <li>"medium dark" refers to skin tones between Type IV & V</li>
+            <li>"dark" refers to between Type V & VI</li>
+          </ul>
+          <img src='https://suttonderm.com/wp-content/uploads/2016/09/FITZPATRICK-COLOR-CHART.png' alt='fitzpatrick scale'/>
+        </p>
         React app by <a href='https://www.instagram.com/tootopus' target="_blank" rel='noreferrer'>chi</a>
         <Link to="/edit">.</Link>
       </footer>
