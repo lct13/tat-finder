@@ -24,5 +24,3 @@ https://user-images.githubusercontent.com/68937391/159989827-8fbdb37e-e602-425f-
 * better categorization of skin tones
 * more accommodations
 
-**Note: this is a one-way operation. Once you `eject`, you can't go back!**
-
