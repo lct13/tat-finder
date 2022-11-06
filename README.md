@@ -18,9 +18,8 @@ https://user-images.githubusercontent.com/68937391/159989827-8fbdb37e-e602-425f-
 ### for submit page
 * Form validation
 * Submit thumbnail pics
-* User-typed tags (maybe)
 
 ### for the tags
 * better categorization of skin tones
-* more accommodations
+* more filtering: LGTBQ-owned, women-owned, Black-owned, BIPOC-owned, ADA accessible entrance, etc.
 
